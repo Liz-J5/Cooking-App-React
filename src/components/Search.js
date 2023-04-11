@@ -24,12 +24,12 @@ const Search = () => {
   };
 
   document.addEventListener("click", (e) => {
-    if (allMeals.includes(e.target.parentNode.className))
-      setSelection(e.target.parentNode.className) && setDetails(true);
-    else setSelection("") && setDetails(false);
+    if (e.target.parentNode !== null && allMeals.includes(e.target.parentNode.className))
+      setSelection(e.target.parentNode.className);
+    else setSelection("");
   });
 
-  //   document.addEventListener("click", (e) =>
+  // document.addEventListener("click", (e) =>
   //   allMeals.includes(e.target.parentNode.className)
   //     ? setSelection(e.target.parentNode.className)
   //     : setSelection("")
@@ -41,7 +41,7 @@ const Search = () => {
   //   setDetails(false);
   // }
 
-  console.log(details);
+  // console.log(details);
 
   // // setSelection(e.target.parentNode.className)
 
