@@ -24,10 +24,25 @@ const Search = () => {
   };
 
   document.addEventListener("click", (e) => {
-    if (e.target.parentNode !== null && allMeals.includes(e.target.parentNode.className))
+    if (e.target.parentNode !== null && allMeals.includes(e.target.parentNode.className)) {
       setSelection(e.target.parentNode.className);
-    else setSelection("");
+      setDetails(true);
+      clear();
+    } else {
+      setSelection("");
+      setDetails(false);
+    }
   });
+
+  // useEffect(() => {
+  //   if (selection) {
+  //     setDetails(true);
+  //     return;
+  //   } else {
+  //     setDetails(false);
+  //     return;
+  //   }
+  // });
 
   // document.addEventListener("click", (e) =>
   //   allMeals.includes(e.target.parentNode.className)
@@ -67,6 +82,7 @@ const Search = () => {
 
       {/* (input ? JSON.stringify(meals).includes(input) : meals) */}
       <ul>
+        {/* {selection ? setDetails(true) : setDetails(false)} */}
         {data
           .filter((meals) =>
             input
@@ -76,7 +92,7 @@ const Search = () => {
               : meals
           )
           .map((meals) => (
-            <Card key={meals.idMeal} meals={meals} />
+            <Card key={meals.idMeal} meals={meals} details={details} />
           ))}
       </ul>
     </div>

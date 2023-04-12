@@ -23,6 +23,14 @@ li {
     flex-grow: 1;
 }
 
+#details {
+    width: 100%;
+}
+
+h3 {
+    text-align: left;
+}
+
 p {
     text-align: justify;
     margin-bottom: 10PX;
