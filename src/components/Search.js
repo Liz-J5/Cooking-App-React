@@ -8,7 +8,6 @@ const Search = () => {
   const [data, setData] = useState([]);
   const [input, setInput] = useState("");
   const [selection, setSelection] = useState("");
-
   const allMeals = data.map((element) => element.strMeal);
   const [details, setDetails] = useState(false);
 
@@ -20,7 +19,9 @@ const Search = () => {
 
   const clear = () => {
     setInput("");
-    document.getElementById("input").value = "";
+    if (document.getElementById("input") != null) {
+      document.getElementById("input").value = "";
+    }
   };
 
   document.addEventListener("click", (e) => {
@@ -28,61 +29,51 @@ const Search = () => {
       setSelection(e.target.parentNode.className);
       setDetails(true);
       clear();
-    } else {
-      setSelection("");
-      setDetails(false);
     }
   });
 
-  // useEffect(() => {
-  //   if (selection) {
-  //     setDetails(true);
-  //     return;
-  //   } else {
-  //     setDetails(false);
-  //     return;
-  //   }
-  // });
-
-  // document.addEventListener("click", (e) =>
-  //   allMeals.includes(e.target.parentNode.className)
-  //     ? setSelection(e.target.parentNode.className)
-  //     : setSelection("")
-  // );
-
-  // if (selection) {
-  //   setDetails(true);
-  // } else {
-  //   setDetails(false);
-  // }
-
-  // console.log(details);
-
-  // // setSelection(e.target.parentNode.className)
-
   return (
     <div>
-      <div className="search-bar">
-        <input
-          id="input"
-          type="text"
-          placeholder="Type here to search"
-          onKeyDown={(e) => {
-            if (e.code === "Enter") setInput(e.target.value);
-          }}
-        />
-        <br />
+      {details === false && (
+        <div className="search-bar">
+          <input
+            id="input"
+            type="text"
+            placeholder="Type here to search"
+            onKeyDown={(e) => {
+              if (e.code === "Enter") setInput(e.target.value);
+            }}
+          />
+          <br />
 
-        {input && (
-          <button type="button" onClick={() => clear()}>
-            Cancel
+          <button type="button" onClick={() => setInput(document.getElementById("input").value)}>
+            Search
           </button>
-        )}
-      </div>
 
-      {/* (input ? JSON.stringify(meals).includes(input) : meals) */}
+          {input && (
+            <button type="button" onClick={() => clear()}>
+              Cancel
+            </button>
+          )}
+        </div>
+      )}
+
+      {details === true && (
+        <div className="return-btn-container">
+          <button
+            id="return-btn"
+            type="button"
+            onClick={() => {
+              setSelection("");
+              setDetails(false);
+            }}
+          >
+            Return
+          </button>
+        </div>
+      )}
+
       <ul>
-        {/* {selection ? setDetails(true) : setDetails(false)} */}
         {data
           .filter((meals) =>
             input
