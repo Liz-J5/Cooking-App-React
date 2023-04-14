@@ -1,3 +1,7 @@
+# VIEW DEPLOYED SITE
+
+Click here: https://react-project1-recipes-app.netlify.app/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
